@@ -1,0 +1,121 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import React from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+
+interface ThankYouScreenProps {
+  onBackToFlights: () => void;
+}
+
+export const ThankYouScreen = ({ onBackToFlights }: ThankYouScreenProps) => {
+  const router = useRouter();
+
+  const handleBackToHome = () => {
+    // Expo Router kullanarak ana sayfaya dön
+    router.push('/');
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.content}>
+        <View style={styles.iconContainer}>
+          <Ionicons name="checkmark-circle" size={80} color="#4CAF50" />
+        </View>
+        
+        <Text style={styles.title}>Rezervasyon Talebiniz Alınmıştır!</Text>
+        
+        <Text style={styles.message}>
+          Rezervasyon talebiniz başarıyla gönderildi. En kısa sürede size dönüş yapacağız.
+        </Text>
+        
+        <View style={styles.detailsContainer}>
+          <View style={styles.detailItem}>
+            <Ionicons name="mail-outline" size={20} color="#1C7A8C" />
+            <Text style={styles.detailText}>tayfun.koc@windowslive.com</Text>
+          </View>
+          <View style={styles.detailItem}>
+            <Ionicons name="time-outline" size={20} color="#1C7A8C" />
+            <Text style={styles.detailText}>24 saat içinde yanıt alacaksınız</Text>
+          </View>
+        </View>
+        
+        <TouchableOpacity style={styles.backButton} onPress={handleBackToHome}>
+          <Ionicons name="airplane-outline" size={20} color="white" />
+          <Text style={styles.backButtonText}>Uçuşlara Dön</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f0f8ff',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 30,
+  },
+  iconContainer: {
+    marginBottom: 30,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#0A2A43',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  message: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    lineHeight: 24,
+    marginBottom: 40,
+  },
+  detailsContainer: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 12,
+    marginBottom: 40,
+    width: '100%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  detailItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  detailText: {
+    marginLeft: 10,
+    fontSize: 14,
+    color: '#0A2A43',
+  },
+  backButton: {
+    backgroundColor: '#1C7A8C',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+    borderRadius: 12,
+  },
+  backButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 10,
+  },
+}); 

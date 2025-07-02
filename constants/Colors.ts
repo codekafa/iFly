@@ -6,7 +6,19 @@
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
-export const Colors = {
+const Colors = {
+  primary: '#8755CC', // Ana mor renk
+  primarySoft: '#A98DDA', // Soft mor
+  background: '#F6F2FB', // Çok açık morumsu arka plan
+  card: '#E5D8F6', // Kartlar için soft mor
+  accent: '#B388FF', // Vurgu için açık mor
+  button: '#8755CC', // Buton ana rengi
+  buttonText: '#FFFFFF', // Buton üzeri yazı
+  text: '#3D246C', // Koyu mor, ana yazı
+  textSoft: '#6D4E9C', // Soft mor yazı
+  border: '#D1B3FF', // Border için açık mor
+  error: '#E57373', // Hata için kırmızımsı
+  success: '#81C784', // Başarı için yeşil
   light: {
     text: '#11181C',
     background: '#fff',
@@ -24,3 +36,5 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
 };
+
+export default Colors;
