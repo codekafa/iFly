@@ -7,16 +7,16 @@ const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
 const Colors = {
-  primary: '#8755CC', // Ana mor renk
-  primarySoft: '#A98DDA', // Soft mor
-  background: '#F6F2FB', // Çok açık morumsu arka plan
-  card: '#E5D8F6', // Kartlar için soft mor
-  accent: '#B388FF', // Vurgu için açık mor
-  button: '#8755CC', // Buton ana rengi
+  primary: '#2563EB', // Ana mavi renk
+  primarySoft: '#3B82F6', // Soft mavi
+  background: '#F0F8FF', // Çok açık mavimsi arka plan
+  card: '#DBEAFE', // Kartlar için soft mavi
+  accent: '#60A5FA', // Vurgu için açık mavi
+  button: '#2563EB', // Buton ana rengi
   buttonText: '#FFFFFF', // Buton üzeri yazı
-  text: '#3D246C', // Koyu mor, ana yazı
-  textSoft: '#6D4E9C', // Soft mor yazı
-  border: '#D1B3FF', // Border için açık mor
+  text: '#1E3A8A', // Koyu mavi, ana yazı
+  textSoft: '#475569', // Soft mavi yazı
+  border: '#BFDBFE', // Border için açık mavi
   error: '#E57373', // Hata için kırmızımsı
   success: '#81C784', // Başarı için yeşil
   light: {

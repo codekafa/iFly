@@ -1,27 +1,29 @@
 {
   "expo": {
-    "name": "FlyTaxiExpo",
-    "slug": "FlyTaxiExpo",
+    "name": "i-Fly",
+    "slug": "i-fly-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "flytaxiexpo",
+    "icon": "./assets/images/ifly-logo.png",
+    "scheme": "ifly",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ifly.app"
     },
     "android": {
+      "package": "com.ifly.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#2563EB"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/ifly-logo.png"
     },
     "plugins": [
       "expo-router",
@@ -38,6 +40,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "710ece86-f487-4fec-a5d4-077da78e7337"
+      }
     }
   }
 }

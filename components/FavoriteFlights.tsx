@@ -1,11 +1,11 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Colors from '../constants/Colors';
 
 interface FavoriteFlightsProps {
-  onFlightSelect?: (flight: any, tabIndex: number) => void;
+  onFlightSelect?: (flight: any) => void;
 }
 
 // Select 5 popular flights for display
@@ -18,7 +18,10 @@ const FAVORITE_FLIGHTS = [
     price: 3200,
     type: 'roundtrip',
     tabIndex: 0, // Şehir İçi Tur tab
-    description: 'Antalya - Kıbrıs Gidiş Dönüş'
+    description: 'Antalya - Kıbrıs Gidiş Dönüş',
+    fromImage: require('../assets/images/destinatons/antalya.jpg'),
+    toImage: require('../assets/images/destinatons/kıbrıs.jpg'),
+    planeImage: require('../assets/images/planes/commercial.jpg')
   },
   {
     id: 2,
@@ -28,7 +31,10 @@ const FAVORITE_FLIGHTS = [
     price: 3200,
     type: 'roundtrip',
     tabIndex: 0,
-    description: 'Antalya - Dalaman Gidiş Dönüş'
+    description: 'Antalya - Dalaman Gidiş Dönüş',
+    fromImage: require('../assets/images/destinatons/antalya.jpg'),
+    toImage: require('../assets/images/destinatons/antalya.jpg'), // Dalaman için Antalya kullanıyoruz
+    planeImage: require('../assets/images/planes/commercial.jpg')
   },
   {
     id: 3,
@@ -38,7 +44,10 @@ const FAVORITE_FLIGHTS = [
     price: 6400,
     type: 'trnc',
     tabIndex: 1, // KKTC tab
-    description: 'Kıbrıs - Antalya Tek Yön'
+    description: 'Kıbrıs - Antalya Tek Yön',
+    fromImage: require('../assets/images/destinatons/kıbrıs.jpg'),
+    toImage: require('../assets/images/destinatons/antalya.jpg'),
+    planeImage: require('../assets/images/planes/commercial.jpg')
   },
   {
     id: 4,
@@ -48,7 +57,10 @@ const FAVORITE_FLIGHTS = [
     price: 2400,
     type: 'vip',
     tabIndex: 2, // Özel Uçuş tab
-    description: 'Antalya - Gazipaşa VIP'
+    description: 'Antalya - Gazipaşa VIP',
+    fromImage: require('../assets/images/destinatons/antalya.jpg'),
+    toImage: require('../assets/images/destinatons/gazipasa.jpg'),
+    planeImage: require('../assets/images/planes/vip-jet.jpg')
   },
   {
     id: 5,
@@ -58,20 +70,23 @@ const FAVORITE_FLIGHTS = [
     price: 7200,
     type: 'vip',
     tabIndex: 2,
-    description: 'Bodrum - Kıbrıs Özel Uçuş'
+    description: 'Bodrum - Kıbrıs Özel Uçuş',
+    fromImage: require('../assets/images/destinatons/bodrum.jpg'),
+    toImage: require('../assets/images/destinatons/kıbrıs.jpg'),
+    planeImage: require('../assets/images/planes/vip-jet.jpg')
   }
 ];
 
 export default function FavoriteFlights({ onFlightSelect }: FavoriteFlightsProps) {
   const router = useRouter();
 
-  const handleFlightSelect = (flight: any, tabIndex: number) => {
+  const handleFlightSelect = (flight: any) => {
     if (onFlightSelect) {
-      onFlightSelect(flight, tabIndex);
+      onFlightSelect(flight);
     } else {
       // Yeni sayfaya yönlendir
       router.push({
-        pathname: '/favorite-flight-detail' as any,
+        pathname: '/favorite-flight-detail',
         params: {
           from: flight.from,
           to: flight.to,
@@ -95,14 +110,32 @@ export default function FavoriteFlights({ onFlightSelect }: FavoriteFlightsProps
           <TouchableOpacity
             key={flight.id}
             style={styles.flightCard}
-            onPress={() => handleFlightSelect(flight, flight.tabIndex)}
+            onPress={() => handleFlightSelect(flight)}
             activeOpacity={0.7}
           >
             <View style={styles.flightHeader}>
               <View style={styles.routeContainer}>
-                <Text style={styles.fromText}>{flight.from}</Text>
-                <Ionicons name="airplane" size={16} color={Colors.primary} style={styles.planeIcon} />
-                <Text style={styles.toText}>{flight.to}</Text>
+                <View style={styles.locationContainer}>
+                  <Image 
+                    source={flight.fromImage} 
+                    style={styles.locationImage}
+                    resizeMode="cover"
+                    fadeDuration={0}
+                  />
+                  <Text style={styles.fromText}>{flight.from}</Text>
+                </View>
+                <View style={styles.planeIconContainer}>
+                  <Ionicons name="airplane" size={20} color={Colors.primary} style={styles.planeIcon} />
+                </View>
+                <View style={styles.locationContainer}>
+                  <Image 
+                    source={flight.toImage} 
+                    style={styles.locationImage}
+                    resizeMode="cover"
+                    fadeDuration={0}
+                  />
+                  <Text style={styles.toText}>{flight.to}</Text>
+                </View>
               </View>
               <View style={styles.typeBadge}>
                 <Text style={styles.typeText}>
@@ -184,13 +217,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
+  locationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  locationImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 8,
+    marginRight: 8,
+  },
   fromText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: Colors.text,
   },
-  planeIcon: {
+  planeIconContainer: {
     marginHorizontal: 8,
+  },
+  planeIcon: {
     transform: [{ rotate: '45deg' }],
   },
   toText: {
